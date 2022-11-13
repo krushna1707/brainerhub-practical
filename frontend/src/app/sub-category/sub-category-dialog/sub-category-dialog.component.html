@@ -1,0 +1,78 @@
+<div aria-hidden="true" class="fixed z-50 flex justify-center items-center h-modal md:h-full md:inset-0">
+  <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
+    <!-- Modal content -->
+    <form id="subCategoryForm" class="px-8 pt-6 pb-8 mb-4" [formGroup]="subCategoryForm" (ngSubmit)="submit()">
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <!-- Modal header -->
+        <div class="flex justify-between items-start p-5 rounded-t border-b ">
+          <h3 class="text-xl font-semibold text-gray-900 lg:text-2xl">
+            {{data?.id ? "Edit" : "Add" }} Sub Category
+          </h3>
+          <button (click)="dialogRef.close()" type="button"
+            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-cente"
+            data-modal-toggle="defaultModal">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+        <!-- Modal body -->
+        <div class="p-6 space-y-6">
+          <div class="input-group">
+            <label for="categoryId">
+              Category
+            </label>
+            <div class="input">
+              <select formControlName="categoryId" id="categoryId" class="select" name="categoryId">
+                <option *ngFor="let row of categoryList" [value]="row.id">{{row?.name}}</option>
+              </select>
+              <div class="form-control-feedback"
+                *ngIf="pf['categoryId'].errors && (pf['categoryId'].dirty || pf['categoryId'].touched)">
+                <p class="error" *ngIf="pf['categoryId'].errors?.['required']">Category is required</p>
+              </div>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="categoryName">
+             Name
+            </label>
+            <div class="input">
+              <input formControlName="subCategoryName" id="subCategoryName" type="text" name="subCategoryName" />
+              <div class="form-control-feedback"
+                *ngIf="pf['subCategoryName'].errors && (pf['subCategoryName'].dirty || pf['subCategoryName'].touched)">
+                <p class="error" *ngIf="pf['subCategoryName'].errors?.['required']">Sub category name is required</p>
+                <p class="error" *ngIf="pf['subCategoryName'].errors?.['maxlength']"> Maximum 50 characters are allow
+                </p>
+                <p class="error" *ngIf="pf['subCategoryName'].errors?.['pattern']"> Not allow spaces in
+                  first and last. </p>
+              </div>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="categoryDesc">
+              Description
+            </label>
+            <div class="input">
+              <textarea class="border w-full" id="subCategoryDesc" formControlName="subCategoryDesc"
+                name="subCategoryDesc"></textarea>
+              <div class="form-control-feedback"
+                *ngIf="pf['subCategoryDesc'].errors && (pf['subCategoryDesc'].dirty || pf['subCategoryDesc'].touched)">
+                <p class="error" *ngIf="pf['subCategoryDesc'].errors?.['required']">Sub category description is
+                  required</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="w-full flex items-center justify-end p-6 space-x-2 rounded-b border-t border-gray-200">
+          <button type="button" (click)="dialogRef.close()"
+            class="rounded-lg border border-gray-200 hover:bg-gray-100 text-sm font-medium px-5 py-2.5 bg-white focus:ring-gray-300">Cancel</button>
+          <button type="submit"
+            class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4  rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 focus:z-10">{{data?.id ? "Update" : "Save" }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

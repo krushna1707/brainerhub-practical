@@ -1,0 +1,38 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav bg-blue-500" mode="side">
+    <ul class="py-1 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+      <li routerLinkActive='active'>
+        <a [routerLink]="['/pages/category']"
+          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Category</a>
+      </li>
+      <li routerLinkActive='active'>
+        <a [routerLink]="['/pages/sub-category']"
+          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sub Category</a>
+      </li>
+      <li routerLinkActive='active'>
+        <a [routerLink]="['/pages/product']"
+          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Product</a>
+      </li>
+    </ul>
+  </mat-drawer>
+
+  <div class="example-sidenav-content h-screen">
+    <mat-toolbar color="primary">
+      <button (click)="drawer.toggle()" mat-icon-button class="example-icon"
+        aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="ml-1">Product Management</span>
+      <div class="example-spacer ">
+        <button class="float-right" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

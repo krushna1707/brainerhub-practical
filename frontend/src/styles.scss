@@ -1,0 +1,80 @@
+
+
+// @use "@angular/material" as mat;
+
+// @include mat.core();
+
+// $frontend-app-primary: mat.define-palette(mat.$indigo-palette);
+// $frontend-app-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// $frontend-app-warn: mat.define-palette(mat.$red-palette);
+// $frontend-app-theme: mat.define-light-theme(
+//   (
+//     color: (
+//       primary: $frontend-app-primary,
+//       accent: $frontend-app-accent,
+//       warn: $frontend-app-warn,
+//     ),
+//   )
+// );
+
+// // Include theme styles for core and each component used in your app.
+// // Alternatively, you can import and @include the theme mixins for each component
+// // that you are using.
+// @include mat.all-component-themes($frontend-app-theme);
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .header {
+    @apply h-14 w-full bg-blue-500 p-4 items-center text-white mb-4
+  }
+  .table {
+    @apply w-full
+  }
+  .table tr th {
+    @apply border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left
+  }
+  .table tr td {
+    @apply border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400
+  }
+  .input-group {
+    @apply mb-6 grid grid-cols-12 items-center
+  }
+  .input-group label {
+    @apply block text-gray-700 text-sm font-bold mb-2 mr-4 col-span-2
+  }
+  .input-group .input {
+    @apply col-span-10
+  }
+  .input-group .input input {
+    @apply shadow appearance-none border rounded col-span-10 py-2 px-3 text-gray-700 leading-tight w-full
+  }
+  .btn-success {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-1 h-9
+  }
+  .error {
+    @apply text-red-500 pt-1
+  }
+  .btn-danger {
+    @apply bg-red-500 text-white font-bold py-2 px-4 m-1 rounded
+  }
+  .border-t-1 {
+    border-top-width: 1px;
+  }
+  .select {
+    @apply block shadow w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+  }
+  li.active {
+    @apply bg-white
+  }
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

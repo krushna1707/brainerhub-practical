@@ -1,0 +1,38 @@
+<div class="flex justify-center item-center pt-28">
+    <form [formGroup]="loginForm" class="w-96" (ngSubmit)="submit()">
+
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+            <div class="mb-4">
+                <label class="block text-grey-darker text-sm font-bold mb-2" for="email">
+                    Email
+                </label>
+                <input formControlName="email"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="email"
+                    type="text" placeholder="Email">
+                <div class="form-control-feedback"
+                    *ngIf="pf['email'] && pf['email'].errors && (pf['email'].dirty || pf['email'].touched)">
+                    <p class="error" *ngIf="pf['email'].errors?.['required']">Email is required</p>
+                    <p class="error" *ngIf="pf['email'].errors?.['email']">Please enter valid email</p>
+                </div>
+            </div>
+            <div class="mb-6">
+                <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
+                    Password
+                </label>
+                <input formControlName="password" class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
+                    id="password" type="password" placeholder="******************">
+                    <div class="form-control-feedback"
+                    *ngIf="pf['password'] && pf['password'].errors && (pf['password'].dirty || pf['password'].touched)">
+                    <p class="error" *ngIf="pf['password'].errors?.['required']">Password is required</p>
+
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 w-full text-white font-bold py-2 px-4 rounded" type="submit">
+                    Sign In
+                </button>
+
+            </div>
+        </div>
+    </form>
+</div>

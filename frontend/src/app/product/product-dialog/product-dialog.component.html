@@ -1,0 +1,106 @@
+<div aria-hidden="true" class="fixed z-50 flex justify-center items-center h-modal md:h-full md:inset-0">
+  <div class="relative px-4 w-full max-w-2xl h-full md:h-auto">
+    <!-- Modal content -->
+    <form class="px-8 pt-6 pb-8 mb-4" [formGroup]="productForm" (ngSubmit)="submit()">
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <!-- Modal header -->
+        <div class="flex justify-between items-start p-5 rounded-t border-b ">
+          <h3 class="text-xl font-semibold text-gray-900 lg:text-2xl">
+            {{data?.id ? "Edit" : "Add" }} Product
+          </h3>
+          <button (click)="dialogRef.close()" type="button"
+            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-cente"
+            data-modal-toggle="defaultModal">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+        <!-- Modal body -->
+        <div class="p-6 space-y-6">
+          <div class="input-group">
+            <label for="categoryIds">
+              Category
+            </label>
+            <div class="input">
+              <mat-select formControlName="categoryIds" class="select" multiple>
+                <mat-option *ngFor="let row of data.categoryList" [value]="row.id">{{row?.name}}</mat-option>
+              </mat-select>
+              <div class="form-control-feedback"
+                *ngIf="pf['categoryIds'].errors && (pf['categoryIds'].dirty || pf['categoryIds'].touched)">
+                <p class="error" *ngIf="pf['categoryIds'].errors?.['required']">Category is required</p>
+              </div>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="productName">
+              Name
+            </label>
+            <div class="input">
+              <input formControlName="productName" id="productName" type="text" name="productName" />
+              <div class="form-control-feedback"
+                *ngIf="pf['productName'].errors && (pf['productName'].dirty || pf['productName'].touched)">
+                <p class="error" *ngIf="pf['productName'].errors?.['required']">Product name is required</p>
+                <p class="error" *ngIf="pf['productName'].errors?.['maxlength']"> Maximum 50 characters are allow </p>
+                <p class="error" *ngIf="pf['productName'].errors?.['pattern']"> Not allow spaces in
+                  first and last. </p>
+              </div>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="productPrice">
+              Price
+            </label>
+            <div class="input">
+              <input id="productPrice" formControlName="productPrice" name="productPrice" type="number" />
+              <div class="form-control-feedback"
+                *ngIf="pf['productPrice'].errors && (pf['productPrice'].dirty || pf['productPrice'].touched)">
+                <p class="error" *ngIf="pf['productPrice'].errors?.['required']">Product price is required</p>
+                <p class="error" *ngIf="pf['productPrice'].errors?.['min']"> Product price must not be less than 1</p>
+                <p class="error" *ngIf="pf['productPrice'].errors?.['max']"> Product price must not be greater than
+                  99999.99</p>
+                <p class="error" *ngIf="pf['productPrice'].errors?.['pattern']"> Only allow number. </p>
+              </div>
+            </div>
+
+          </div>
+          <div class="input-group">
+            <label for="itemImage">
+              Image
+            </label>
+            <div class="input">
+              <input id="productImage" (change)="updateFile($event)" formControlName="productImage" name="productImage"
+                type="file" accept="image/*" />
+              <div class="form-control-feedback"
+                *ngIf="pf['productImage'].errors && (pf['productImage'].dirty || pf['productImage'].touched)">
+                <p class="error" *ngIf="pf['productImage'].errors?.['required']">Product image is required</p>
+              </div>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="productDesc">
+              Description
+            </label>
+            <div class="input">
+              <textarea class="border w-full" id="productDesc" formControlName="productDesc"
+                name="productDesc"></textarea>
+              <div class="form-control-feedback"
+                *ngIf="pf['productDesc'].errors && (pf['productDesc'].dirty || pf['productDesc'].touched)">
+                <p class="error" *ngIf="pf['productDesc'].errors?.['required']">Product description is required</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="w-full flex items-center justify-end p-6 space-x-2 rounded-b border-t border-gray-200">
+          <button type="button" (click)="dialogRef.close()"
+            class="rounded-lg border border-gray-200 hover:bg-gray-100 text-sm font-medium px-5 py-2.5 bg-white focus:ring-gray-300">Cancel</button>
+          <button type="submit" 
+            class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4  rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 focus:z-10">{{data?.id ? "Update" : "Save" }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
